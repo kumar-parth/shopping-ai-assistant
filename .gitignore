@@ -1,0 +1,7 @@
+.DS_Store
+
+dist
+
+extension-ui/dist
+
+extension-ui/node_modules

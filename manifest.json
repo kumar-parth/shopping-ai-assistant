@@ -1,0 +1,38 @@
+{
+    "manifest_version": 3,
+    "name": "Shopping Helper",
+    "version": "1.0",
+    "description": "Asks relevant questions before a purchase & provides price comparisons.",
+    "permissions": ["storage", "activeTab", "scripting"],
+    "host_permissions": ["https://*/*", "http://*/*"],
+    "background": {
+      "service_worker": "background.js",
+      "type": "module"
+    },
+    "action": {
+      "default_popup": "dist/index.html",
+      "default_icon": "shopping-helper-icon.png"
+    },
+    "icons": {
+        "16": "shopping-helper-icon.png",
+        "48": "shopping-helper-icon.png",
+        "128": "shopping-helper-icon.png"
+    },
+    "content_scripts": [
+      {
+        "matches": [
+            "*://*/*"
+        ],
+        "js": ["content.js"]
+      }
+    ],
+    "web_accessible_resources": [
+      {
+        "resources": ["dist/*", "loader.gif"],
+        "matches": [
+          "*://*/*"
+        ]
+      }
+    ]    
+  }
+  
