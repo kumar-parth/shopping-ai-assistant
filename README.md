@@ -7,29 +7,31 @@ Follow these steps to set up and run the project locally:
 
 1. First, clone the repository to your local machine:
 
-git clone <repository-url>
+```
+git clone https://github.com/kumar-parth/shopping-ai-assistant.git
+```
 
 2. Navigate to the Project Directory
 
 Once the repository is cloned, navigate into the project directory:
-cd shopping-helper-extension/extension-ui
+``` cd shopping-helper-extension/extension-ui ```
 
 3. Install Dependencies
 Make sure you are using Node.js version 18 or greater. If not, please update your Node.js version.
 
 Then, install the required dependencies:
-npm install
+``` npm install ```
 
 
 4. Build the Extension
 Once dependencies are installed, create a production build of the extension:
-npm run build
+``` npm run build ```
 
 Note: This will generate the build files in the dist folder.
 
 5. Copy the Build to the Main Directory
 Next, copy the contents of the dist folder to the main project directory. You can do this with the following command:
-cp -r dist ../.
+``` cp -r dist ../. ```
 
 6. Load the Extension in Chrome
 Open Chrome and go to chrome://extensions/.
