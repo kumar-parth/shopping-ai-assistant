@@ -8,7 +8,7 @@ Follow these steps to set up and run the project locally:
 1. First, clone the repository to your local machine:
 
 ```bash
-git clone https://github.com/kumar-parth/shopping-ai-assistant.git
+git clone <repository-url>
 
 2. Navigate to the Project Directory
 
@@ -41,7 +41,7 @@ Select the shopping-helper-extension directory and click Open.
 7. Extension Activated
 The extension is now active! You can browse to any eCommerce site, and on the product view page, you will see the "Ask Before Buying" button.
 
-Thats it! The extension should now be working locally. If you run into any issues, feel free to open an issue in the repository.
+That's it! The extension should now be working locally. If you run into any issues, feel free to open an issue in the repository.
 
 
 # Gemini API Key Setup Guide
@@ -50,7 +50,7 @@ Follow these steps to obtain your Gemini API key and integrate it into your appl
 
 ## Step 1: Create a Gemini Account
 
-1. **Visit Geminis website**: Go to the [Gemini website](https://www.gemini.com/).
+1. **Visit Gemini's website**: Go to the [Gemini website](https://www.gemini.com/).
 2. **Sign up**: Click on "Get Started" or "Sign Up" to create a new account.
 3. **Complete the registration process**: Fill in the necessary details like your email, username, password, and any additional security information required.
 
@@ -70,7 +70,7 @@ Follow these steps to obtain your Gemini API key and integrate it into your appl
 
 ## Step 5: Set Permissions for the API Key
 
-1. When prompted, you will need to specify the permissions for the API key. You can configure it for different levels of access, including:
+1. When prompted, you'll need to specify the permissions for the API key. You can configure it for different levels of access, including:
    - **Read-only**: If you just need to read data.
    - **Trade**: If you need to execute trades.
    - **Withdraw**: If you need to perform withdrawals.
