@@ -26,50 +26,7 @@ function getUserApiKey() {
   });
 }
 
-async function extractProductDetailsUsingGemini() {
-  const prompt = `
-  Go through the below URL: ${window.location.href} and get me the object containing the title, price, image URL, and the category of the product.
 
-Respond with only a JSON object like:
-{
-  "title": "Product title",
-  "price": "₹12345",
-  "category": "Mobile",
-  "image": "https://example.com/image.jpg"
-}
-  `;
-
-  try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          contents: [
-            {
-              parts: [{ text: prompt }],
-            },
-          ],
-        }),
-      }
-    );
-
-    const json = await response.json();
-    const rawText = json?.candidates?.[0]?.content?.parts?.[0]?.text || "";
-
-    let cleaned = rawText.trim();
-    if (cleaned.startsWith("```json")) {
-      cleaned = cleaned.replace(/^```json/, "").replace(/```$/, "").trim();
-    }
-
-    const parsed = JSON.parse(cleaned);
-    return parsed;
-  } catch (error) {
-    console.error("❌ Failed to extract using Gemini:", error);
-    return { title: "Not found", price: "Not found", description: "Not found", image: "" };
-  }
-}
 
 if (isProductPage()) {
   const overlay = document.createElement("div");
@@ -83,8 +40,7 @@ if (isProductPage()) {
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  ">Ask Before Buying <span class="loader" style="display: none; margin-left: 10px;">
-  <img src="${chrome.runtime.getURL("loader.gif")}" height="16" />
+  ">Ask Before Buying
   </span></button>`;
   overlay.style.position = "fixed";
   overlay.style.zIndex = "9999";
@@ -94,7 +50,6 @@ if (isProductPage()) {
 
   document.getElementById("helper-btn").addEventListener("click", async () => {
       console.log("🔘 Button clicked");
-      const loaderSpan = document.querySelector(".loader");
 
       // Toggle container if it already exists
       let existing = document.getElementById("shopping-helper-root");
@@ -103,57 +58,42 @@ if (isProductPage()) {
         return;
       }
 
-      loaderSpan.style.display = "inline-block"; // to show
-      // Extract product data first
-      const productData = await extractProductDetailsUsingGemini();
-      loaderSpan.style.display = "none"; // to hide
-      console.log("✅ Gemini Extracted Product Details:", productData);
+      // Create the container
+      const container = document.createElement("div");
+      container.id = "shopping-helper-root";
+      container.style.position = "fixed";
+      container.style.bottom = "80px";
+      container.style.right = "20px";
+      container.style.zIndex = "9999";
+      container.style.width = "400px";
+      container.style.background = "white";
+      container.style.border = "2px solid black";
+      container.style.padding = "20px";
+      container.style.borderRadius = "12px";
+      container.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
+      document.body.appendChild(container);
 
-      // Save to Chrome storage
-      chrome.storage.local.set({ productData }, () => {
-        console.log("📦 Stored productData", productData);
-        const container = document.createElement("div");
-        container.id = "shopping-helper-root";
-        container.style.position = "fixed";
-        container.style.bottom = "80px";
-        container.style.right = "20px";
-        container.style.zIndex = "9999";
-        container.style.width = "400px";
-        container.style.background = "white";
-        container.style.border = "2px solid black";
-        container.style.padding = "20px";
-        container.style.borderRadius = "12px";
-        container.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
-        document.body.appendChild(container);
+      const script = document.createElement("script");
+      script.src = chrome.runtime.getURL("dist/main.js");
+      script.type = "module";
+      document.body.appendChild(script);
 
-        const script = document.createElement("script");
-        script.src = chrome.runtime.getURL("dist/main.js");
-        script.type = "module";
-        document.body.appendChild(script);
-
-        const cssLink = document.createElement("link");
-        cssLink.rel = "stylesheet";
-        cssLink.href = chrome.runtime.getURL("dist/assets/main.css"); // ✅ correct path since it's under dist/assets/
-        document.head.appendChild(cssLink);
-    });
+      const cssLink = document.createElement("link");
+      cssLink.rel = "stylesheet";
+      cssLink.href = chrome.runtime.getURL("dist/assets/main.css"); // ✅ correct path since it's under dist/assets/
+      document.head.appendChild(cssLink);
   });
 
   window.addEventListener("message", (event) => {
     if (event.source !== window) return;
-    if (event.data.type === "GET_PRODUCT_DATA") {
-      chrome.storage.local.get("productData", (result) => {
-        window.postMessage({
-          type: "PRODUCT_DATA",
-          payload: result.productData || null,
-        }, "*");
-      });
-    }
-
+    console.log("📩 content.js received:", event.data);
      // Getter
     if (event.data.type === "GET_GEMINI_API_KEY") {
+      console.log("📤 Sending API_KEY_RESPONSE to window");
       chrome.storage.local.get("geminiApiKey", (result) => {
+        console.log('API KEY => ', result);
         window.postMessage(
-          { type: "GEMINI_API_KEY", payload: result.geminiApiKey || "" },
+          { type: "GEMINI_API_KEY_RESPONSE", payload: result.geminiApiKey || "" },
           "*"
         );
       });
@@ -161,6 +101,7 @@ if (isProductPage()) {
 
     // Setter
     if (event.data.type === "SET_GEMINI_API_KEY") {
+      console.log('setting api key in chrome storage');
       chrome.storage.local.set({ geminiApiKey: event.data.payload }, () => {
         console.log("✅ Gemini API key saved to storage");
       });
