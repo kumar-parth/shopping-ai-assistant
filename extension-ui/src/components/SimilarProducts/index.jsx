@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import './style.css';
-// Replace with your actual Gemini API key
-// const geminiApiKey = "AIzaSyBnkQ46Q0oUH4JmzxIupDAoitbszxtl1ZU"; 
 
 export default function SimilarProductLinks({ productData, apiKey }) {
   const [links, setLinks] = useState([]);
