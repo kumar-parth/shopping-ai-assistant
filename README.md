@@ -1,7 +1,56 @@
 # shopping-ai-assistant
 A chrome browser extension to show product recommendations using Gemini AI similar to the product being viewed on any site.
 
+# Gemini API Key Setup Guide
+
+Follow these steps to obtain your Gemini API key and integrate it into your application.
+
+## Step 1: Create a Gemini Account
+
+1. **Visit Gemini's website**: Go to the [Gemini website](https://www.gemini.com/).
+2. **Sign up**: Click on "Get Started" or "Sign Up" to create a new account.
+3. **Complete the registration process**: Fill in the necessary details like your email, username, password, and any additional security information required.
+
+## Step 2: Verify Your Account
+
+1. After signing up, Gemini will send you a verification email.
+2. Open the email and click on the verification link to confirm your email address.
+
+## Step 3: Log In to Your Gemini Account
+
+1. Once your email is verified, log in to your Gemini account using the credentials you created.
+
+## Step 4: Access the API Section
+
+1. **Navigate to the API page**: After logging in, go to the **Account** or **Settings** section, and look for an option labeled **API**.
+2. **Create an API Key**: In the API section, you will find an option to create a new API key. Click the “Create New API Key” button.
+
+## Step 5: Set Permissions for the API Key
+
+1. When prompted, you'll need to specify the permissions for the API key. You can configure it for different levels of access, including:
+   - **Read-only**: If you just need to read data.
+   - **Trade**: If you need to execute trades.
+   - **Withdraw**: If you need to perform withdrawals.
+2. Select the appropriate permissions based on your use case.
+
+> **Note**: For this extension, you can use Read-only permission.
+
+## Step 6: Generate the API Key
+
+1. After selecting the appropriate permissions, click "Create API Key".
+2. Gemini will generate a new API key and a secret key.
+3. **Copy your API key and secret**: Make sure to securely store both the **API key** and **API secret**. The secret will only be shown once, so keep it in a secure place.
+
+> **Important**: Keep your API secret private! Never expose it in client-side code or share it publicly.
+
+Use the API key to paste in the prompt asked by the assistant in the following screenshot.
 ![image](https://github.com/user-attachments/assets/41ff92b3-47cf-406b-aaf4-145025ab52e6)
+
+Assistant UI in browser
 ![image](https://github.com/user-attachments/assets/2c72b46e-e9e6-40e0-a270-52b71592bcac)
+
+Assistant will ask a few questions.
 ![image](https://github.com/user-attachments/assets/8fb32b4b-47bc-46c2-b7d1-421eba9cff22)
+
+Assistant will provide AI suggested product recommendation links from different google links.
 ![image](https://github.com/user-attachments/assets/2d1fe5c2-d2cf-4e11-a94f-edfeda766ea0)
