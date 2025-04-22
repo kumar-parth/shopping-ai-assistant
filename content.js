@@ -1,6 +1,5 @@
 console.log("Shopping Helper is running...");
 
-const GEMINI_API_KEY = "AIzaSyBnkQ46Q0oUH4JmzxIupDAoitbszxtl1ZU";
 
 const isProductPage = () => {
   const allBuyButtons = ["add to cart", "buy now", "add to bag"];
