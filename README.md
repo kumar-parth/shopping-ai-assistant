@@ -1,5 +1,48 @@
 # shopping-ai-assistant
 A chrome browser extension to show product recommendations using Gemini AI similar to the product being viewed on any site.
+# Shopping Helper Extension Setup Guide
+
+Follow these steps to set up and run the project locally:
+## 1. Clone the Repository
+
+1. First, clone the repository to your local machine:
+
+```bash
+git clone https://github.com/kumar-parth/shopping-ai-assistant.git
+
+2. Navigate to the Project Directory
+
+Once the repository is cloned, navigate into the project directory:
+cd shopping-helper-extension/extension-ui
+
+3. Install Dependencies
+Make sure you are using Node.js version 18 or greater. If not, please update your Node.js version.
+
+Then, install the required dependencies:
+npm install
+
+
+4. Build the Extension
+Once dependencies are installed, create a production build of the extension:
+npm run build
+
+Note: This will generate the build files in the dist folder.
+
+5. Copy the Build to the Main Directory
+Next, copy the contents of the dist folder to the main project directory. You can do this with the following command:
+cp -r dist ../.
+
+6. Load the Extension in Chrome
+Open Chrome and go to chrome://extensions/.
+Enable Developer mode by toggling the switch in the top-right corner.
+Click on the Load unpacked button.
+Select the shopping-helper-extension directory and click Open.
+
+7. Extension Activated
+The extension is now active! You can browse to any eCommerce site, and on the product view page, you will see the "Ask Before Buying" button.
+
+Thats it! The extension should now be working locally. If you run into any issues, feel free to open an issue in the repository.
+
 
 # Gemini API Key Setup Guide
 
@@ -7,7 +50,7 @@ Follow these steps to obtain your Gemini API key and integrate it into your appl
 
 ## Step 1: Create a Gemini Account
 
-1. **Visit Gemini's website**: Go to the [Gemini website](https://www.gemini.com/).
+1. **Visit Geminis website**: Go to the [Gemini website](https://www.gemini.com/).
 2. **Sign up**: Click on "Get Started" or "Sign Up" to create a new account.
 3. **Complete the registration process**: Fill in the necessary details like your email, username, password, and any additional security information required.
 
@@ -27,7 +70,7 @@ Follow these steps to obtain your Gemini API key and integrate it into your appl
 
 ## Step 5: Set Permissions for the API Key
 
-1. When prompted, you'll need to specify the permissions for the API key. You can configure it for different levels of access, including:
+1. When prompted, you will need to specify the permissions for the API key. You can configure it for different levels of access, including:
    - **Read-only**: If you just need to read data.
    - **Trade**: If you need to execute trades.
    - **Withdraw**: If you need to perform withdrawals.
