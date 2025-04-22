@@ -7,7 +7,6 @@ Follow these steps to set up and run the project locally:
 
 1. First, clone the repository to your local machine:
 
-```bash
 git clone <repository-url>
 
 2. Navigate to the Project Directory
