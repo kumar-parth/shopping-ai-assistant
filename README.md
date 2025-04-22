@@ -47,13 +47,17 @@ Follow these steps to obtain your Gemini API key and integrate it into your appl
 ## Screenshots
 
 1. Assistant UI in browser
+
 ![image](https://github.com/user-attachments/assets/2c72b46e-e9e6-40e0-a270-52b71592bcac)
 
 2. Use the API key to paste in the prompt asked by the assistant in the following screenshot.
+
 ![image](https://github.com/user-attachments/assets/41ff92b3-47cf-406b-aaf4-145025ab52e6)
 
 3. Assistant will ask a few questions.
+
 ![image](https://github.com/user-attachments/assets/8fb32b4b-47bc-46c2-b7d1-421eba9cff22)
 
 4. Assistant will provide AI suggested product recommendation links from different google links.
+
 ![image](https://github.com/user-attachments/assets/2d1fe5c2-d2cf-4e11-a94f-edfeda766ea0)
