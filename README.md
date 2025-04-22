@@ -52,9 +52,10 @@ Follow these steps to obtain your Gemini API key and integrate it into your appl
 
 ## Step 1: Create a Gemini Account
 
-1. **Visit Gemini's website**: Go to the [Gemini website](https://ai.google.dev/gemini-api/docs/api-key).
+1. **Visit Gemini's website**: Go to the [Gemini website](https://aistudio.google.com/app/apikey).
 2. **Sign up**: Click on "Get Started" or "Sign Up" to create a new account.
 3. **Complete the registration process**: Fill in the necessary details like your email, username, password, and any additional security information required.
+4. **Already Signed In**: Click on Create API Key.
 
 ## Step 2: Verify Your Account
 
