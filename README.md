@@ -34,7 +34,8 @@ Next, copy the contents of the dist folder to the main project directory. You ca
 ``` cp -r dist ../. ```
 
 6. Load the Extension in Chrome
-Open Chrome and go to chrome://extensions/.
+Open Chrome and go to 
+``` chrome://extensions/ ```
 Enable Developer mode by toggling the switch in the top-right corner.
 Click on the Load unpacked button.
 Select the shopping-helper-extension directory and click Open.
