@@ -1,13 +1,12 @@
 console.log("Shopping Helper is running...");
 
-
-const isProductPage = () => {
+function isProductPage() {
   const allBuyButtons = ["add to cart", "buy now", "add to bag"];
-  const buyText = document.body?.innerText.toLowerCase();
-  const isProductPage = allBuyButtons.some((text) => buyText.includes(text));
-  console.log("is product page ==> ", isProductPage);
-  return isProductPage;
-};
+  const buyText = document.body?.innerText?.toLowerCase() || "";
+  const result = allBuyButtons.some((text) => buyText.includes(text));
+  console.log("is product page ==> ", result);
+  return result;
+}
 
 function getUserApiKey() {
   return new Promise((resolve) => {
@@ -25,9 +24,9 @@ function getUserApiKey() {
   });
 }
 
+window.addEventListener("load", (event) => {
+  if (!isProductPage()) return;
 
-
-if (isProductPage()) {
   const overlay = document.createElement("div");
   overlay.innerHTML = `<button id="helper-btn" style="
     background-color: #f90;
@@ -39,8 +38,7 @@ if (isProductPage()) {
     font-weight: bold;
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-  ">Ask Before Buying
-  </span></button>`;
+  ">Ask Before Buying</button>`;
   overlay.style.position = "fixed";
   overlay.style.zIndex = "9999";
   overlay.style.bottom = "20px";
@@ -48,39 +46,37 @@ if (isProductPage()) {
   document.body.appendChild(overlay);
 
   document.getElementById("helper-btn").addEventListener("click", async () => {
-      console.log("🔘 Button clicked");
+    console.log("🔘 Button clicked");
 
-      // Toggle container if it already exists
-      let existing = document.getElementById("shopping-helper-root");
-      if (existing) {
-        existing.style.display = existing.style.display === "none" ? "block" : "none";
-        return;
-      }
+    let existing = document.getElementById("shopping-helper-root");
+    if (existing) {
+      existing.style.display = existing.style.display === "none" ? "block" : "none";
+      return;
+    }
 
-      // Create the container
-      const container = document.createElement("div");
-      container.id = "shopping-helper-root";
-      container.style.position = "fixed";
-      container.style.bottom = "80px";
-      container.style.right = "20px";
-      container.style.zIndex = "9999";
-      container.style.width = "400px";
-      container.style.background = "white";
-      container.style.border = "2px solid black";
-      container.style.padding = "20px";
-      container.style.borderRadius = "12px";
-      container.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
-      document.body.appendChild(container);
+    const container = document.createElement("div");
+    container.id = "shopping-helper-root";
+    container.style.position = "fixed";
+    container.style.bottom = "80px";
+    container.style.right = "20px";
+    container.style.zIndex = "9999";
+    container.style.width = "400px";
+    container.style.background = "white";
+    container.style.border = "2px solid black";
+    container.style.padding = "20px";
+    container.style.borderRadius = "12px";
+    container.style.boxShadow = "0 4px 12px rgba(0,0,0,0.15)";
+    document.body.appendChild(container);
 
-      const script = document.createElement("script");
-      script.src = chrome.runtime.getURL("dist/main.js");
-      script.type = "module";
-      document.body.appendChild(script);
+    const script = document.createElement("script");
+    script.src = chrome.runtime.getURL("dist/main.js");
+    script.type = "module";
+    document.body.appendChild(script);
 
-      const cssLink = document.createElement("link");
-      cssLink.rel = "stylesheet";
-      cssLink.href = chrome.runtime.getURL("dist/assets/main.css"); // ✅ correct path since it's under dist/assets/
-      document.head.appendChild(cssLink);
+    const cssLink = document.createElement("link");
+    cssLink.rel = "stylesheet";
+    cssLink.href = chrome.runtime.getURL("dist/assets/main.css");
+    document.head.appendChild(cssLink);
   });
 
   window.addEventListener("message", (event) => {
@@ -98,12 +94,10 @@ if (isProductPage()) {
       });
     }
 
-    // Setter
     if (event.data.type === "SET_GEMINI_API_KEY") {
-      console.log('setting api key in chrome storage');
       chrome.storage.local.set({ geminiApiKey: event.data.payload }, () => {
         console.log("✅ Gemini API key saved to storage");
       });
     }
   });
-}
+});
