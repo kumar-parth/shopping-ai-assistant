@@ -12,7 +12,7 @@ export default function SimilarProductLinks({ productData, apiKey }) {
     setLoading(true);
 
     const prompt = `
-    Find 3–5 similar products related to "${productData.category}" that are priced around ${productData.price}. Use publicly available data from various e-commerce websites.
+    Find atleast 5 similar products related to "${productData.category}" that are priced around ${productData.price}. Use publicly available data from various e-commerce websites.
 
     Return only a JSON array of objects. Each object must include:
     - "title": the product name
@@ -69,10 +69,12 @@ export default function SimilarProductLinks({ productData, apiKey }) {
 
   return (
     <div className="mt-4">
-      <h3 className="font-semibold mb-2">AI-Suggested Similar Products</h3>
-      <button className="refreshBtn" onClick={fetchSimilarLinks}>
-        🔄 Refresh
-      </button>
+      <h3 style={{ marginBottom: '10px' }}>AI-Suggested Similar Products</h3>
+      <div className="refresh-container">
+        <button className="refreshBtn" onClick={fetchSimilarLinks}>
+          🔄 Refresh
+        </button>
+      </div>
 
       {loading && <p className="mt-2">Refreshing recommendations...</p>}
 

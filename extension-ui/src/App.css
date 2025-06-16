@@ -5,6 +5,10 @@
   white-space: normal; /* Prevent text from being cut */
 }
 
+.refresh-container {
+  margin: 10px;
+}
+
 .nextBtn {
   background-color: #f90;
   color: white;
